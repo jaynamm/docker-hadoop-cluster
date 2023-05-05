@@ -32,16 +32,16 @@ RUN echo "export JAVA_HOME=${JAVA_HOME}" >> ~/.bashrc
 # Hadoop 디렉터리 생성
 RUN mkdir /opt/hadoop
 
-# Hadoop 설치
-RUN wget https://archive.apache.org/dist/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz -P ${HADOOP_DIR} \
-    && tar -xvzf ${HADOOP_DIR}/hadoop-2.7.7.tar.gz -C ${HADOOP_DIR} \
-    && rm -rf ${HADOOP_DIR}/hadoop-2.7.7.tar.gz
-
 # Hadoop 설치를 위한 변수 선언
 ENV HADOOP_DIR=/opt/hadoop
 ENV HADOOP_VERSION=hadoop-2.7.7
 ENV HADOOP_HOME=${HADOOP_DIR}/${HADOOP_VERSION}
 ENV HADOOP_CONFIG_HOME=${HADOOP_HOME}/etc/hadoop
+
+# Hadoop 설치
+RUN wget -d https://archive.apache.org/dist/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz -P ${HADOOP_DIR} \
+    && tar -xvzf ${HADOOP_DIR}/hadoop-2.7.7.tar.gz -C ${HADOOP_DIR} \
+    && rm -rf ${HADOOP_DIR}/hadoop-2.7.7.tar.gz
 
 # ~/.bashrc 파일에 하둡 환경변수 설정
 RUN echo "export HADOOP_HOME=${HADOOP_HOME}" >> ~/.bashrc \
