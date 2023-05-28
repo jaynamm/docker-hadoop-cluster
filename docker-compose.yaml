@@ -5,37 +5,43 @@ services:
     image: hadoop-base:latest
     container_name: nn
     hostname: nn
-    entrypoint: /opt/hadoop/entrypoint.sh
     ports:
       - 50070:50070
       - 9000:9000
-    networks:
-      - bridge
+    volumes:
+      - nn:/opt/hadoop/namenode
+    stdin_open: true
+    tty: true
 
   dn1:
     image: hadoop-base:latest
     container_name: dn1
     hostname: dn1
-    entrypoint: /opt/hadoop/entrypoint.sh
-    networks:
-      - bridge
+    volumes:
+      - dn1:/opt/hadoop/datanode
+    stdin_open: true
+    tty: true
 
   dn2:
     image: hadoop-base:latest
     container_name: dn2
     hostname: dn2
-    entrypoint: /opt/hadoop/entrypoint.sh
-    networks:
-      - bridge
+    volumes:
+      - dn2:/opt/hadoop/datanode
+    stdin_open: true
+    tty: true
 
   dn3:
     image: hadoop-base:latest
     container_name: dn3
     hostname: dn3
-    entrypoint: /opt/hadoop/entrypoint.sh
-    networks:
-      - bridge
+    volumes:
+      - dn3:/opt/hadoop/datanode
+    stdin_open: true
+    tty: true
 
-
-networks:
-  bridge:
+volumes:
+  nn:
+  dn1:
+  dn2:
+  dn3:
