@@ -1,4 +1,5 @@
-# 도커로 하둡 클러스터 만들기
+# 도커로 하둡 클러스터 만들기 (진행중)
+
 
 ### Dockerfile (hadoop-base)
 각 서버의 Dockerfile 의 내용은 다음과 같습니다.  
